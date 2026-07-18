@@ -1,0 +1,63 @@
+package collections_practice_and_dsa_practice.gcrcodebase.Hashing;
+
+import java.util.*;
+
+public class LongestConsecutiveUserIDs {
+
+
+    public static int longestConsecutiveRun(int[] ids) {
+
+
+        Set<Integer> idSet = new HashSet<>();
+
+
+        for (int id : ids) {
+
+            idSet.add(id);
+        }
+
+
+        int longest = 0;
+
+
+        for (int id : idSet) {
+
+
+            if (!idSet.contains(id - 1)) {
+
+
+                int length = 1;
+
+                int current = id;
+
+
+                while (idSet.contains(current + 1)) {
+
+                    current++;
+
+                    length++;
+                }
+
+
+                longest = Math.max(longest, length);
+            }
+        }
+
+
+        return longest;
+    }
+
+
+
+    public static void main(String[] args) {
+
+
+        int[] ids = {100, 4, 200, 1, 3, 2};
+
+
+        int result = longestConsecutiveRun(ids);
+
+
+        System.out.println("Longest consecutive user ID run: " + result);
+    }
+}
